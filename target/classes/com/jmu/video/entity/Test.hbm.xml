@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-5-5 10:14:07 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.jmu.video.entity.Test" table="T_TEST">
+        <id name="testId" type="java.lang.Integer">
+            <column name="TESTID" />
+            <generator class="increment" />
+        </id>
+        <property name="testName" type="java.lang.String">
+            <column name="TESTNAME" />
+        </property>
+        <property name="itemA" type="java.lang.String">
+            <column name="ITEMA" />
+        </property>
+        <property name="itemB" type="java.lang.String">
+            <column name="ITEMB" />
+        </property>
+        <property name="itemC" type="java.lang.String">
+            <column name="ITEMC" />
+        </property>
+        <property name="itemD" type="java.lang.String">
+            <column name="ITEMD" />
+        </property>
+        <property name="answer" type="java.lang.String">
+            <column name="ANSWER" />
+        </property>
+        <property name="detail" type="java.lang.String">
+            <column name="DETAIL" />
+        </property>
+        <many-to-one name="course" class="com.jmu.video.entity.Course" lazy="false">
+            <column name="COURSEID" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

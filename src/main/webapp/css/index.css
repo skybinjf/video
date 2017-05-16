@@ -1,0 +1,9 @@
+@CHARSET "UTF-8";
+
+.item img {
+	height: 580.92px;
+}
+/* 图片轮播距离上边导航条设置为0 */
+#myCarousel{
+	margin-top: -20px;	
+}

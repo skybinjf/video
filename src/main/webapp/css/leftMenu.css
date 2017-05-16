@@ -1,0 +1,21 @@
+@CHARSET "UTF-8";
+
+.leftMenu{
+	width: 250px;
+	height: 700px;
+	float: left;
+	border-right: 1px solid gray;
+	margin-top: -20px;
+}
+.accordion-inner{
+	margin-left: 10px;
+}
+
+
+.rightContent{
+	float: left;
+	margin-top: -10px;
+	width: 1332px;
+	height: 700px;
+}
+

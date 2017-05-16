@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC
+        "-//Apache Struts//XWork Validator 1.0.2//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
+
+<validators>
+    <field name="userName">
+        <field-validator type="requiredstring" short-circuit="true">
+        	<param name="trim">true</param>
+            <message key="用户名不能为空！"/>
+        </field-validator>
+        <field-validator type="regex">
+        	<param name="regex"><![CDATA[(\w{4,25})]]></param>
+        	<message>用户名必须在4到25个字符！</message>
+        </field-validator>
+    </field>
+    <field name="email">
+        <field-validator type="regex" short-circuit="true">
+            <message key="邮箱不能为空！"/>
+        </field-validator>
+        <field-validator type="regex">
+        	<param name="expression">^(\w)+(\.\w+)*@(\w)+((\.\w{2,3}){1,3})$</param>
+        	<message>邮箱不符合规则！</message>
+        </field-validator>
+    </field>
+    <field name="phone">
+        <field-validator type="requiredstring" short-circuit="true">
+        	<param name="trim">true</param>
+            <message key="联系电话不能为空！"/>
+        </field-validator>
+        <field-validator type="regex">
+        	<param name="regex"><![CDATA[(\w{4,25})]]></param>
+        	<message>用户名必须在4到25个字符！</message>
+        </field-validator>
+    </field>
+    <field name="address">
+        <field-validator type="requiredstring" short-circuit="true">
+        	<param name="trim">true</param>
+            <message key="地址不能为空！"/>
+        </field-validator>
+        <field-validator type="regex">
+        	<param name="regex"><![CDATA[(\w{4,25})]]></param>
+        	<message>用户名必须在4到25个字符！</message>
+        </field-validator>
+    </field>
+</validators>

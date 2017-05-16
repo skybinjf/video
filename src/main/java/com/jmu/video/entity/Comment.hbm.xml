@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-5-2 10:20:34 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.jmu.video.entity.Comment" table="T_COMMENT">
+        <id name="commentId" type="java.lang.Integer">
+            <column name="COMMENTID" />
+            <generator class="increment" />
+        </id>
+        <property name="content" type="java.lang.String">
+            <column name="CONTENT" />
+        </property>
+        <property name="mark" type="java.lang.Integer">
+            <column name="MARK" />
+        </property>
+        <property name="commentDate" type="java.util.Date">
+            <column name="commentDate" />
+        </property>
+        <many-to-one name="user" class="com.jmu.video.entity.User" lazy="false">
+            <column name="USERID" />
+        </many-to-one>
+        <many-to-one name="course" class="com.jmu.video.entity.Course" lazy="false">
+            <column name="COURSEID" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

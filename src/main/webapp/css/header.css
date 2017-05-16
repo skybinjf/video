@@ -1,0 +1,14 @@
+@CHARSET "UTF-8";
+
+.container {
+	padding: 0 80px;
+}
+
+.register {
+	margin-left: 10px;
+}
+
+.pull-right {
+	margin-top: 10px;
+}
+

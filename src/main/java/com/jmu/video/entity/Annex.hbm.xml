@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-5-2 10:31:36 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.jmu.video.entity.Annex" table="T_ANNEX">
+        <id name="annex" type="java.lang.Integer">
+            <column name="ANNEX" />
+            <generator class="increment" />
+        </id>
+        <property name="path" type="java.lang.String">
+            <column name="PATH" />
+        </property>
+        <property name="uploadContentType" type="java.lang.String">
+            <column name="UPLOADCONTENTTYPE" />
+        </property>
+        <property name="uploadFileName" type="java.lang.String">
+            <column name="UPLOADFILENAME" />
+        </property>
+        <many-to-one name="course" class="com.jmu.video.entity.Course" >
+            <column name="COURSEID" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

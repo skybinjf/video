@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-17 9:37:54 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.jmu.video.entity.Chapter" table="T_CHAPTER">
+        <id name="chapterId" type="java.lang.Integer">
+            <column name="CHAPTERID" />
+            <generator class="increment" />
+        </id>
+        <property name="chapterName" type="java.lang.String">
+            <column name="CHAPTERNAME" />
+        </property>
+        <many-to-one name="course" class="com.jmu.video.entity.Course" cascade="all">
+            <column name="COURSEID" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

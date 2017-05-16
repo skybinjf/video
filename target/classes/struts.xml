@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<!-- 添加上传文件错误提示的国际化资源 -->
+	<constant name="struts.custom.i18n.resources" value="app"></constant>
+	<!-- 设置项目允许上传最大的文件 -->
+	<constant name="struts.multipart.maxSize" value="900000000"/>
+
+	<package name="default" namespace="/" extends="struts-default">
+		<!-- 首页的action，加载所有课程 -->
+		<action name="index" class="indexAction" method="execute">
+			<result name="index">/WEB-INF/pages/index.jsp</result>
+			<result name="success">/WEB-INF/pages/index.jsp</result>
+			<result name="input">/WEB-INF/pages/index.jsp</result>
+		</action>
+		
+		<action name="annex_*" class="annexAction" method="{1}">
+			<result name="uploadAnnexPage">/WEB-INF/pages/uploadAnnex.jsp</result>
+			<result name="uploadSuccess">/WEB-INF/pages/teacher.jsp</result>
+			<result name="courseAnnexDownload">/WEB-INF/pages/courseAnnexDownload.jsp</result>
+			<result name="addTestPage">/WEB-INF/pages/addTest.jsp</result>
+			<result name="saveTestSuccess">/WEB-INF/pages/teacher.jsp</result>
+			<result name="testPage">/WEB-INF/pages/courseTest.jsp</result>
+			<result name="testAnswer">/WEB-INF/pages/courseTestAnswer.jsp</result>
+			<result name="sendMessageToTeacherSuccess" type="chain">index</result>
+			<result name="teacherScanMessage">/WEB-INF/pages/teacherScanMessage.jsp</result>
+			<result name="subMessageDetail">/WEB-INF/pages/teacherScanSubMessage.jsp</result>
+			<result name="teacherRevertSuccess" type="chain">annex_subMessageDetail</result>
+			<result name="deleteMessageSuccess" type="chain">annex_teacherScanMessage</result>
+			<result name="revertMessageSuccess" type="chain">index</result>
+			<result name="studentScanSubMessage">/WEB-INF/pages/studentScanSubMessage.jsp</result>
+			
+			
+			<!-- 文件下载 -->
+			<param name="inputPath">/annex</param>
+			<result name="success" type="stream">
+				<param name="contentType">application/ectet-stream</param>
+				<param name="inputName">targetFile</param>		
+				<!-- 以附件的形式下载 -->		
+				<param name="contentDisposition">attachment;filename="${fileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<result name="input">/WEB-INF/pages/register.jsp</result>
+		</action>
+
+		<action name="loginAction" class="loginAction" method="execute">
+			<result name="success" type="chain">index</result>
+			<result name="fail">/WEB-INF/pages/fail.jsp</result>
+			<result name="input">/WEB-INF/pages/register.jsp</result>
+		</action>
+		
+		<action name="registerAction" class="registerAction" method="execute">
+			<result name="success" type="chain">index</result>
+			<result name="input">/WEB-INF/pages/register.jsp</result>
+		</action>
+		
+		<action name="comment_*" class="commentAction" method="{1}">
+			<result name="submitCommentSucc" type="chain">comment_courseComment</result>
+			<result name="courseComment">/WEB-INF/pages/courseComment.jsp</result>
+			<result name="input" type="chain">index</result>
+		</action>
+		
+		<action name="user_*" class="userAction" method="{1}">
+			<result name="student">/WEB-INF/pages/student.jsp</result>
+			<result name="teacher">/WEB-INF/pages/teacher.jsp</result>
+			<result name="admin">/WEB-INF/pages/admin.jsp</result>
+			<result name="success" type="chain">index</result>
+			<result name="updateTeacherSuccess">/WEB-INF/pages/teacher.jsp</result>
+			<result name="updateAdminSuccess">/WEB-INF/pages/admin.jsp</result>
+			<result name="updateStudentSuccess">/WEB-INF/pages/student.jsp</result>
+			<result name="updateAdminPasswordSuccess">/WEB-INF/pages/admin.jsp</result>
+			<result name="updateTeacherPasswordSuccess">/WEB-INF/pages/teacher.jsp</result>
+			<result name="updateStudentPasswordSuccess">/WEB-INF/pages/student.jsp</result>
+			<result name="findAllTeachersSuccess">/WEB-INF/pages/adminManageTeacher.jsp</result>
+			<result name="deleteTeacherSuccess" type="chain">user_findAllTeachers</result>
+			<result name="adminAddTeacherSuccess" type="chain">user_findAllTeachers</result>
+			<result name="updatePasswordFail">/WEB-INF/pages/updatePassword.jsp</result>
+			<result name="logoutSuccess" type="chain">index</result>
+			<result name="input" type="chain">index</result>
+			<result name="getBackPasswordSuccess" type="chain">index</result>
+			
+		</action>
+		
+		<action name="course_*" class="courseAction" method="{1}">
+			<result name="success">/WEB-INF/pages/index.jsp</result>
+			<result name="input">/WEB-INF/pages/index.jsp</result>
+			<result name="addCourseSuccess" type="chain">course_findAllCoursesByTeacherId</result>
+			<result name="findAllCoursesSuccess">/WEB-INF/pages/adminCourse.jsp</result>
+			<result name="findAllCoursesByStatus">/WEB-INF/pages/adminCourse.jsp</result>
+			<result name="findAllCoursesByTeacherIdSuccess">/WEB-INF/pages/addChapter.jsp</result>
+			<result name="addChapterSuccess" type="chain">course_findAllCourses</result>
+			<result name="scanMyCourseSuccess">/WEB-INF/pages/teacherCourse.jsp</result>
+			<result name="chapterDetailSuccess">/WEB-INF/pages/chapterDetail.jsp</result>
+			<result name="adminChapterDetailSuccess">/WEB-INF/pages/adminChapter.jsp</result>
+			<result name="videoDetailSuccess">/WEB-INF/pages/videoDetail.jsp</result>
+			<result name="adminVideoSuccess">/WEB-INF/pages/adminVideo.jsp</result>
+			<result name="editCourseSuccess">/WEB-INF/pages/courseEdit.jsp</result>
+			<result name="updateCourseSuccess" type="chain">course_scanMyCourse</result>
+			<result name="editChapterSuccess">/WEB-INF/pages/chapterEdit.jsp</result>
+			<result name="updateChapterSuccess" type="chain">course_scanMyCourse</result>
+			<result name="editVideoSuccess">/WEB-INF/pages/videoEdit.jsp</result>
+			<result name="updateVideoSuccess" type="chain">course_scanMyCourse</result>
+			<result name="deleteSuccess" type="chain">course_scanMyCourse</result>
+			<result name="findCourseSuccess">/WEB-INF/pages/adminCourse.jsp</result>
+			<result name="checkCourseSuccess">/WEB-INF/pages/adminCourse.jsp</result>
+			<result name="courseScanSuccess">/WEB-INF/pages/courseScan.jsp</result>
+			<result name="classify">/WEB-INF/pages/classify.jsp</result>
+			<result name="videoPlay">/WEB-INF/pages/videoPlay.jsp</result>
+			<result name="input" type="chain">index</result>
+		</action>
+		
+		<!-- 视频上传 -->
+		<action name="upload" class="courseAction" method="upload">
+			<interceptor-ref name="fileUpload">
+				<param name="allowedTypes">video/mp4,image/png,image/gif,image/jpeg</param>
+				<!-- 允许上传500M -->
+				<param name ="maximumSize">1024*1024*500</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<param name="savePath">/video</param>
+			<result name="uploadSuccess">/WEB-INF/pages/teacher.jsp</result>
+			<result name="uploadFail">/WEB-INF/pages/error.jsp</result>
+			<result name="input">/WEB-INF/pages/teacher.jsp</result>
+		</action>
+		<!-- 课件上传 -->
+		<action name="uploadAnnex" class="annexAction" method="uploadAnnex">
+			<interceptor-ref name="fileUpload">
+				<!-- <param name="allowedTypes">video/mp4</param> -->
+				<param name="allowedExtensions">  
+				    png,bmp,jpg,doc,xls,ppt,zip,rar  
+				</param>  
+				<!-- 允许上传500M -->
+				<param name ="maximumSize">1024*1024*500</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<param name="savePath">/annex</param>
+			<result name="uploadSuccess">/WEB-INF/pages/teacher.jsp</result>
+			<result name="uploadFail" type="chain">course_findAllCourses</result>
+			<result name="input" type="chain">course_findAllCourses</result>
+		</action>
+		
+		<!-- 页面跳转 -->
+		<action name="*">
+			<result>/WEB-INF/pages/{1}.jsp</result>
+		</action>
+
+		<!-- 验证码 -->
+		<action name="createImageAction" class="com.jmu.video.action.CreateImageAction"
+			method="execute">
+			<result name="success" type="stream">
+				<param name="contentType">image/jpeg</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		
+	</package>
+
+</struts>

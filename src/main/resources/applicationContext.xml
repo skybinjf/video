@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<!-- 配置action的类（把action交给spring管理,在struts.xml配置action时，class不用写全类名，使等于bean的id即userinfoAction） -->
+	<bean id="loginAction" class="com.jmu.video.action.LoginAction" scope="prototype">
+		<!-- 手动注入service -->
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean id="registerAction" class="com.jmu.video.action.RegisterAction" scope="prototype">
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean id="userAction" class="com.jmu.video.action.UserAction" scope="prototype">
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean id="courseAction" class="com.jmu.video.action.CourseAction" scope="prototype">
+		<property name="courseService" ref="courseService"></property>
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean id="indexAction" class="com.jmu.video.action.IndexAction" scope="prototype">
+		<property name="indexService" ref="indexService"></property>
+	</bean>
+	<bean id="commentAction" class="com.jmu.video.action.CommentAction" scope="prototype">
+		<property name="commentService" ref="commentService"></property>
+		<property name="courseService" ref="courseService"></property>
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean id="annexAction" class="com.jmu.video.action.AnnexAction" scope="prototype">
+		<property name="annexService" ref="annexService"></property>
+		<property name="courseAction" ref="courseAction"></property>
+		<property name="courseService" ref="courseService"></property>
+		<property name="userService" ref="userService"></property>
+	</bean>
+
+	<!-- 配置业务层的类 -->
+	<bean id="userService" class="com.jmu.video.service.impl.UserServiceImpl">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	<bean id="courseService" class="com.jmu.video.service.impl.CourseServiceImpl">
+		<property name="courseDao" ref="courseDao"></property>
+	</bean>
+	<bean id="indexService" class="com.jmu.video.service.impl.IndexServiceImpl">
+		<property name="indexDao" ref="indexDao"></property>
+	</bean>
+	<bean id="commentService" class="com.jmu.video.service.impl.CommentServiceImpl">
+		<property name="commentDao" ref="commentDao"></property>
+	</bean>
+	<bean id="annexService" class="com.jmu.video.service.impl.AnnexServiceImpl">
+		<property name="annexDao" ref="annexDao"></property>
+	</bean>
+
+	<!-- 配置dao的类 -->
+	<bean id="userDao" class="com.jmu.video.dao.UserDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="courseDao" class="com.jmu.video.dao.CourseDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="indexDao" class="com.jmu.video.dao.IndexDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="commentDao" class="com.jmu.video.dao.CommentDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="annexDao" class="com.jmu.video.dao.AnnexDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<!-- 引入外部的属性文件 -->
+	<context:property-placeholder location="classpath:jdbc.properties" />
+
+	<!-- 配置连接池 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${jdbc.driverClass}"></property>
+		<property name="jdbcUrl" value="${jdbc.url}"></property>
+		<property name="user" value="${jdbc.username}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+	</bean>
+
+	<!-- 配置Hibernate的相关属性，需要spring-orm.jar包 -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+
+		<!-- 注入连接池 -->
+		<property name="dataSource" ref="dataSource"></property>
+
+		<!-- 配置Hibernate的属性,配置hibernate 的基本信息 -->
+		<property name="hibernateProperties">
+			<props>
+				<!-- hibernate 所使用的数据库方言 -->
+				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+				<!-- 执行操作时是否在控制台打印SQL -->
+				<prop key="hibernate.show_sql">true</prop>
+				<!-- 是否对SQL 进行格式化 -->
+				<prop key="hibernate.format_sql">true</prop>
+				<!-- 指定自动生成数据表的策略。update:数据库中有该表就使用，没表就创建 -->
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+
+		<!-- 加载Hibernate中的映射文件 -->
+		<property name="mappingResources">
+			<list>
+				<!-- .hbm.xml的全路径，包名用"/"隔开而不是用"." -->
+				<value>com/jmu/video/entity/User.hbm.xml</value>
+				<value>com/jmu/video/entity/Course.hbm.xml</value>
+				<value>com/jmu/video/entity/Admin.hbm.xml</value>
+				<value>com/jmu/video/entity/Chapter.hbm.xml</value>
+				<value>com/jmu/video/entity/Teacher.hbm.xml</value>
+				<value>com/jmu/video/entity/Video.hbm.xml</value>
+				<value>com/jmu/video/entity/Annex.hbm.xml</value>
+				<value>com/jmu/video/entity/Comment.hbm.xml</value>
+				<value>com/jmu/video/entity/Message.hbm.xml</value>
+				<value>com/jmu/video/entity/SubMessage.hbm.xml</value>
+				<value>com/jmu/video/entity/Test.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<!-- 配置事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<!-- 开启注解事务 -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<!-- 配置事务的传播特性 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="del*" propagation="REQUIRED" />
+			<tx:method name="modify*" propagation="REQUIRED" />
+			<tx:method name="save*" rollback-for="Exception" propagation="REQUIRED" />
+			<tx:method name="*" read-only="false" />
+		</tx:attributes>
+	</tx:advice>
+	
+</beans>
+

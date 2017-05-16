@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-5-2 10:20:34 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.jmu.video.entity.Message" table="T_MESSAGE">
+        <id name="messageId" type="java.lang.Integer">
+            <column name="MESSAGEID" />
+            <generator class="increment" />
+        </id>
+        <property name="content" type="java.lang.String">
+            <column name="CONTENT" />
+        </property>
+        <property name="messageDate" type="java.util.Date">
+            <column name="MESSAGEDATE" />
+        </property>
+        <property name="status" type="java.lang.String">
+            <column name="STATUS" />
+        </property>
+        <property name="fromWho" type="java.lang.String">
+            <column name="FROMWHO" />
+        </property>
+        <property name="flag" type="java.lang.String">
+            <column name="FLAG" />
+        </property>
+        <property name="toWho" type="java.lang.String">
+            <column name="TOWHO" />
+        </property>
+        
+    </class>
+</hibernate-mapping>
