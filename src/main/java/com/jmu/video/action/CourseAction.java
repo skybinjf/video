@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -20,7 +19,6 @@ import com.jmu.video.entity.Teacher;
 import com.jmu.video.entity.Video;
 import com.jmu.video.service.CourseService;
 import com.jmu.video.service.UserService;
-import com.jmu.video.util.ComparatorChapter;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -74,7 +72,14 @@ public class CourseAction extends ActionSupport implements ModelDriven<Course> {
 		HttpServletRequest httpServletRequest = ServletActionContext.getRequest();
 		String courseId = httpServletRequest.getParameter("courseId");
 		Course course1 = courseService.findCourseById(new Integer(courseId));
+		course1.setClickNum(course1.getClickNum() + 1);
+		courseService.updateCourse(course1);
+		
 		request.put("course", course1);
+		
+		//相关课程推荐
+		List<Course> courseList = courseService.commendCourse(course1);
+		request.put("courseList", courseList);
 		
 		Integer teacherId = course1.getTeacher().getTeacherId();
 		Teacher teacher1 = userService.findTeacherByTeacherId(teacherId);

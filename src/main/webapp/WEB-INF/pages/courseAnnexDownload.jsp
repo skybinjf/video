@@ -46,8 +46,9 @@
 			<p class="muted">简介：<s:property value="#request.course.intro"/></p>
 		</div>
 		<div>
-			<span class="text-warning">时长：<s:property value="#request.course.period"/></span>  
-			<span class="text-success">分类：<s:property value="#request.course.classify"/></span>
+			<label class="text-warning">时长：<s:property value="#request.course.period"/></label>
+			<label class="text-success">分类：<s:property value="#request.course.classify"/></label>
+			<label class="text-info">浏览人数：<s:property value="#request.course.clickNum"/></label>
 		</div>
 	</div>
 	<!-- 下，内容和教师 -->
@@ -56,7 +57,7 @@
 			<!-- 下左，章节和视频 -->
 			<div class="offset3 span7">
 				<ul class="nav nav-tabs">
-				  <li class="active">
+				  <li class="">
 				    <a href="course_courseScan?courseId=${request.course.courseId }">章节</a>
 				  </li>
 				  <li><a href="comment_courseComment?courseId=${request.course.courseId }">评论</a></li>

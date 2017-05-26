@@ -11,7 +11,7 @@
 
 	<package name="default" namespace="/" extends="struts-default">
 		<!-- 首页的action，加载所有课程 -->
-		<action name="index" class="indexAction" method="execute">
+		<action name="index_*" class="indexAction" method="{1}">
 			<result name="index">/WEB-INF/pages/index.jsp</result>
 			<result name="success">/WEB-INF/pages/index.jsp</result>
 			<result name="input">/WEB-INF/pages/index.jsp</result>
@@ -24,14 +24,16 @@
 			<result name="addTestPage">/WEB-INF/pages/addTest.jsp</result>
 			<result name="saveTestSuccess">/WEB-INF/pages/teacher.jsp</result>
 			<result name="testPage">/WEB-INF/pages/courseTest.jsp</result>
+			<result name="gradePage">/WEB-INF/pages/courseGrade.jsp</result>
 			<result name="testAnswer">/WEB-INF/pages/courseTestAnswer.jsp</result>
-			<result name="sendMessageToTeacherSuccess" type="chain">index</result>
+			<result name="sendMessageToTeacherSuccess" type="chain">index_index</result>
 			<result name="teacherScanMessage">/WEB-INF/pages/teacherScanMessage.jsp</result>
 			<result name="subMessageDetail">/WEB-INF/pages/teacherScanSubMessage.jsp</result>
 			<result name="teacherRevertSuccess" type="chain">annex_subMessageDetail</result>
 			<result name="deleteMessageSuccess" type="chain">annex_teacherScanMessage</result>
-			<result name="revertMessageSuccess" type="chain">index</result>
+			<result name="revertMessageSuccess" type="chain">index_index</result>
 			<result name="studentScanSubMessage">/WEB-INF/pages/studentScanSubMessage.jsp</result>
+			<result name="submitGrade" type="chain">index_index</result>
 			
 			
 			<!-- 文件下载 -->
@@ -47,27 +49,27 @@
 		</action>
 
 		<action name="loginAction" class="loginAction" method="execute">
-			<result name="success" type="chain">index</result>
+			<result name="success" type="chain">index_index</result>
 			<result name="fail">/WEB-INF/pages/fail.jsp</result>
 			<result name="input">/WEB-INF/pages/register.jsp</result>
 		</action>
 		
 		<action name="registerAction" class="registerAction" method="execute">
-			<result name="success" type="chain">index</result>
+			<result name="success" type="chain">index_index</result>
 			<result name="input">/WEB-INF/pages/register.jsp</result>
 		</action>
 		
 		<action name="comment_*" class="commentAction" method="{1}">
 			<result name="submitCommentSucc" type="chain">comment_courseComment</result>
 			<result name="courseComment">/WEB-INF/pages/courseComment.jsp</result>
-			<result name="input" type="chain">index</result>
+			<result name="input" type="chain">index_index</result>
 		</action>
 		
 		<action name="user_*" class="userAction" method="{1}">
 			<result name="student">/WEB-INF/pages/student.jsp</result>
 			<result name="teacher">/WEB-INF/pages/teacher.jsp</result>
 			<result name="admin">/WEB-INF/pages/admin.jsp</result>
-			<result name="success" type="chain">index</result>
+			<result name="success" type="chain">index_index</result>
 			<result name="updateTeacherSuccess">/WEB-INF/pages/teacher.jsp</result>
 			<result name="updateAdminSuccess">/WEB-INF/pages/admin.jsp</result>
 			<result name="updateStudentSuccess">/WEB-INF/pages/student.jsp</result>
@@ -78,9 +80,9 @@
 			<result name="deleteTeacherSuccess" type="chain">user_findAllTeachers</result>
 			<result name="adminAddTeacherSuccess" type="chain">user_findAllTeachers</result>
 			<result name="updatePasswordFail">/WEB-INF/pages/updatePassword.jsp</result>
-			<result name="logoutSuccess" type="chain">index</result>
-			<result name="input" type="chain">index</result>
-			<result name="getBackPasswordSuccess" type="chain">index</result>
+			<result name="logoutSuccess" type="chain">index_index</result>
+			<result name="input" type="chain">index_index</result>
+			<result name="getBackPasswordSuccess" type="chain">index_index</result>
 			
 		</action>
 		
@@ -109,7 +111,8 @@
 			<result name="courseScanSuccess">/WEB-INF/pages/courseScan.jsp</result>
 			<result name="classify">/WEB-INF/pages/classify.jsp</result>
 			<result name="videoPlay">/WEB-INF/pages/videoPlay.jsp</result>
-			<result name="input" type="chain">index</result>
+			<result name="input" type="chain">index_index</result>
+			<result name="allCourseByClickNum" type="chain">index_index</result>
 		</action>
 		
 		<!-- 视频上传 -->

@@ -166,4 +166,9 @@ public class CourseServiceImpl implements CourseService {
 		return courseDao.findAllCoursesByStatus(status);
 	}
 
+	@Override
+	public List<Course> commendCourse(Course course) {
+		return courseDao.commendCourse(course);
+	}
+
 }

@@ -163,6 +163,15 @@ public class CourseDao extends HibernateDaoSupport {
 		return null;
 	}
 
+	public List<Course> commendCourse(Course course) {
+		String hql = "from Course c where c.intro like ? or c.classify like ?";
+		List<Course> courseList = (List<Course>) this.getHibernateTemplate().find(hql, course.getCourseName(), course.getClassify());
+		if(courseList.size() > 0){
+			return courseList;
+		}
+		return null;
+	}
+
 
 
 

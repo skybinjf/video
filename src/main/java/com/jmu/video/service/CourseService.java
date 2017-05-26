@@ -102,4 +102,6 @@ public interface CourseService {
 	
 	List<Course> findAllCoursesByStatus(String status);
 	
+	List<Course> commendCourse(Course course1);
+	
 }

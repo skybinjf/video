@@ -60,23 +60,47 @@ public class AnnexAction extends ActionSupport implements ModelDriven<Test> {
 	private String fromWho;
 	private String toWho;
 	private String messageId;
-	
 	//---------------留言End-----------------
+	
 	private AnnexService annexService;
 	private CourseAction courseAction;
 	private CourseService courseService;
 	private UserService userService;
+	
+	
+	private Integer grade; //课程评分
+	
 	
 	ActionContext context = ActionContext.getContext();
 	Map<String, Object> session = context.getSession();
 	Map<String, Object> request = (Map<String, Object>) context.get("request");
 	
 	/*
+	 * ------------------------以下是课程评分------------------------
+	 */
+	
+	public String gradePage(){
+		HttpServletRequest httpServletRequest = ServletActionContext.getRequest();
+		String courseId = httpServletRequest.getParameter("courseId");
+		Course c = courseService.findCourseById(new Integer(courseId));
+		request.put("course", c);
+		return "gradePage";
+	}
+	
+	public String submitGrade(){
+		HttpServletRequest httpServletRequest = ServletActionContext.getRequest();
+		String courseId = httpServletRequest.getParameter("courseId");
+		Course c = courseService.findCourseById(new Integer(courseId));
+		System.out.println(grade);
+		
+		return "submitGrade";
+	}
+	
+	/*
 	 * ------------------------以下是留言------------------------
 	 */
 	
 	public String studentScanSubMessage(){
-		//TODO
 		User u = (User) session.get("user");
 		if(u != null){
 			List<SubMessage> subMessageList = annexService.findAllSubMessageByUserName(u.getUserName());
@@ -398,5 +422,12 @@ public class AnnexAction extends ActionSupport implements ModelDriven<Test> {
 	public void setMessageId(String messageId) {
 		this.messageId = messageId;
 	}
+	public Integer getGrade() {
+		return grade;
+	}
+	public void setGrade(Integer grade) {
+		this.grade = grade;
+	}
+	
 	
 }

@@ -55,10 +55,17 @@
 				data-slide="next">&rsaquo;</a>
 		</div>
 		
-		<s:iterator value="#request.courses" var="c">
+		<ul class="nav nav-tabs">
+		  	<li class="active">
+		      <a href="index_index">最新</a>
+		    </li>
+		    <li><a href="index_allCourseByClickNum">人气最高</a></li>
+		</ul>
+		
+		<s:iterator value="#request.courses" var="c" status="index">
 			<div class="media">
 				<a class="pull-left" href="course_courseScan?courseId=${courseId }"> 
-					<video width="200" height="120" poster="image/test8.jpg"> <!-- Firefox --> 
+					<video width="200" height="120" poster="image/test<s:property value='#index.index' />.jpg"> <!-- Firefox --> 
 						<source src='video/<s:property value="#c.uploadFileName" />' type='<s:property value="#c.uploadContentType" />' /> <!-- 如果浏览器不支持video标签，则使用flash --> 
 						<!-- <source src="video/02.ogg" type="video/ogg" />  --><!-- Safari/Chrome--> 
 						<embed src="http://blip.tv/play/gcMVgcmBAgA%2Em4v" type="application/x-shockwave-flash" width="1024" height="798"

@@ -13,6 +13,7 @@ public class Course {
 	private Date uploadDate; //上传时间
 	private String remark; //备注
 	private Teacher teacher;
+	private Integer clickNum; // 点击数
 	
 	public Teacher getTeacher() {
 		return teacher;
@@ -68,11 +69,11 @@ public class Course {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-	@Override
-	public String toString() {
-		return "Course [courseId=" + courseId + ", CourseName=" + courseName
-				+ ", intro=" + intro + ", period=" + period + ", status="
-				+ status + ", classify=" + classify + ", uploadDate="
-				+ uploadDate + ", remark=" + remark + "]";
+	public Integer getClickNum() {
+		return clickNum;
 	}
+	public void setClickNum(Integer clickNum) {
+		this.clickNum = clickNum;
+	}
+	
 }

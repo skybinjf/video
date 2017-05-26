@@ -69,7 +69,7 @@ $(document).ready(function() {
 		<div class="navbar-inner">
 			<div class="container">
 				<div>
-					<a class="brand" href="index.action">Sky视频教学平台</a>
+					<a class="brand" href="index_index">Sky视频教学平台</a>
 					<ul class="nav">
 						<li class=""><a href="course_classify?flag=economy">经济</a></li>
 						<li><a href="course_classify?flag=literature">文学</a></li>

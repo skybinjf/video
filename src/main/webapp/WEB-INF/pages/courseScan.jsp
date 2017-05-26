@@ -18,18 +18,27 @@
 	.videoTitle{
 		margin-left: 20px;
 	}
+	.commendCourse{
+		margin-top: 60px;
+	}
+	.commend{
+		margin-left: 20px;
+	}
 </style>
 </head>
 <body>
 	<!-- 上，课程详细信息 -->
 	<div class="container course">
-		<h3><s:property value="#request.course.courseName"/></h3>
-		<div>
-			<p class="muted">简介：<s:property value="#request.course.intro"/></p>
-		</div>
-		<div>
-			<span class="text-warning">时长：<s:property value="#request.course.period"/></span>  
-			<span class="text-success">分类：<s:property value="#request.course.classify"/></span>
+		<div class="">
+			<h3><s:property value="#request.course.courseName"/></h3>
+			<div>
+				<p class="muted">简介：<s:property value="#request.course.intro"/></p>
+			</div>
+			<div>
+				<label class="text-warning">时长：<s:property value="#request.course.period"/></label>
+				<label class="text-success">分类：<s:property value="#request.course.classify"/></label>
+				<label class="text-info">浏览人数：<s:property value="#request.course.clickNum"/></label>
+			</div>
 		</div>
 	</div>
 	<!-- 下，内容和教师 -->
@@ -44,7 +53,10 @@
 				  <li><a href="comment_courseComment?courseId=${request.course.courseId }">评论</a></li>
 				  <!-- <li><a href="#">打分</a></li> -->
 				  <li><a href="annex_downloadPage?courseId=${request.course.courseId }">下载资料</a></li>
-				  <li><a href="annex_testPage?courseId=${request.course.courseId }">测试</a></li>
+				  <li><a href="annex_testPage?courseId=${request.course.courseId }">练习题</a></li>
+				  <%-- 
+				  <li><a href="annex_gradePage?courseId=${request.course.courseId }">课程评分</a></li>
+				   --%>
 				</ul>
 
 				<s:iterator id="chapter" value="#request.chapters" status="cIndex" var="c">
@@ -99,6 +111,16 @@
 					</div>
 				</form>
 			</div>
+		</div>
+	</div>
+	<div class="container commendCourse">
+		<h4>相关推荐</h4>
+		<div class="commend">
+			<s:iterator value="#request.courseList" id="courses">
+				<div>
+					<h5><a href="course_courseScan?courseId=<s:property value='courseId' /> "><s:property value="courseName" /></a></h5>
+				</div>
+			</s:iterator>
 		</div>
 	</div>
 </body>

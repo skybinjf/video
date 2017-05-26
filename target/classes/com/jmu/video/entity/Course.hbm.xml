@@ -1,36 +1,39 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2017-5-2 10:31:36 by Hibernate Tools 3.4.0.CR1 -->
-<hibernate-mapping>
-    <class name="com.jmu.video.entity.Course" table="T_COURSE">
-        <id name="courseId" type="java.lang.Integer">
-            <column name="COURSEID" />
-            <generator class="increment" />
-        </id>
-        <property name="courseName" type="java.lang.String">
-            <column name="COURSENAME" />
-        </property>
-        <property name="intro" type="java.lang.String">
-            <column name="INTRO" />
-        </property>
-        <property name="period" type="java.lang.String">
-            <column name="PERIOD" />
-        </property>
-        <property name="status" type="java.lang.String">
-            <column name="STATUS" />
-        </property>
-        <property name="classify" type="java.lang.String">
-            <column name="CLASSIFY" />
-        </property>
-        <property name="uploadDate" type="java.util.Date">
-            <column name="UPLOADDATE" />
-        </property>
-        <property name="remark" type="java.lang.String">
-            <column name="REMARK" />
-        </property>
-        <many-to-one name="teacher" class="com.jmu.video.entity.Teacher">
-            <column name="TEACHERID" />
-        </many-to-one>
-    </class>
+<hibernate-mapping default-access="field">
+ <class name="com.jmu.video.entity.Course" table="T_COURSE">
+  <id name="courseId" type="java.lang.Integer">
+   <column name="COURSEID"/>
+   <generator class="increment"/>
+  </id>
+  <property generated="never" lazy="false" name="courseName" type="java.lang.String">
+   <column name="COURSENAME"/>
+  </property>
+  <property generated="never" lazy="false" name="intro" type="java.lang.String">
+   <column name="INTRO"/>
+  </property>
+  <property generated="never" lazy="false" name="period" type="java.lang.String">
+   <column name="PERIOD"/>
+  </property>
+  <property generated="never" lazy="false" name="status" type="java.lang.String">
+   <column name="STATUS"/>
+  </property>
+  <property generated="never" lazy="false" name="classify" type="java.lang.String">
+   <column name="CLASSIFY"/>
+  </property>
+  <property generated="never" lazy="false" name="uploadDate" type="java.util.Date">
+   <column name="UPLOADDATE"/>
+  </property>
+  <property generated="never" lazy="false" name="remark" type="java.lang.String">
+   <column name="REMARK"/>
+  </property>
+  <property generated="never" lazy="false" name="clickNum" type="java.lang.Integer">
+   <column name="CLICKNUM"/>
+  </property>
+  <many-to-one class="com.jmu.video.entity.Teacher" name="teacher">
+   <column name="TEACHERID"/>
+  </many-to-one>
+ </class>
 </hibernate-mapping>
