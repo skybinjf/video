@@ -49,9 +49,9 @@ $(document).ready(function() {
 				required : "必须输入验证码！"
 			}
 		},
-		submitHandler : function(form) {
+		/*submitHandler : function(form) {
 			console.log($(form).serialize());
-		}
+		}*/
 	});
 	
 

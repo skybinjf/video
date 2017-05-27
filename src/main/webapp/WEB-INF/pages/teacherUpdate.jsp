@@ -120,7 +120,7 @@
 						<input type="text" name="vocation" value="<s:property value="%{vocation}"/>" readonly="true" />
 					</div>
 				</div>
-				<div class="control-group">
+				<%-- <div class="control-group">
 					<label class="control-label">状态：</label>
 					<div class="controls">
 						<input type="text" name="status" value="<s:property value="%{status}"/>" readonly="true" />
@@ -131,11 +131,12 @@
 					<div class="controls">
 						<input type="text" name="unit" value="<s:property value="#session.teacher.unit"/>">
 					</div>
-				</div>
+				</div> --%>
 				<div class="control-group">
 					<label class="control-label">简介：</label>
 					<div class="controls">
-						<input type="text" name="intro" value="<s:property value="%{intro}"/>">
+						<%-- <input type="text" name="intro" value="<s:property value="%{intro}"/>"> --%>
+						<textarea rows="3" name="intro" ><s:property value="%{intro}"/></textarea>
 					</div>
 				</div>
 				<div class="control-group">

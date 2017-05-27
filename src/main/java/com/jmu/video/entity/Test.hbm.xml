@@ -29,7 +29,7 @@
         <property name="detail" type="java.lang.String">
             <column name="DETAIL" />
         </property>
-        <many-to-one name="course" class="com.jmu.video.entity.Course" lazy="false">
+        <many-to-one name="course" class="com.jmu.video.entity.Course" lazy="false" cascade="all">
             <column name="COURSEID" />
         </many-to-one>
     </class>

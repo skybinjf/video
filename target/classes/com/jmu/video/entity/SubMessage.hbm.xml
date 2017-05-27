@@ -23,7 +23,7 @@
         <property name="toWho" type="java.lang.String">
             <column name="TOWHO" />
         </property>
-        <many-to-one name="message" class="com.jmu.video.entity.Message" lazy="false">
+        <many-to-one name="message" class="com.jmu.video.entity.Message" lazy="false" cascade="all">
             <column name="MESSAGEID" />
         </many-to-one>
     </class>

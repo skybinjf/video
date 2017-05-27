@@ -41,7 +41,7 @@
         <property name="img" type="java.lang.String">
             <column name="IMG" />
         </property>
-        <set name="teachers" table="T_TEACHER" inverse="false" lazy="false">
+        <set name="teachers" table="T_TEACHER" inverse="false" lazy="false" cascade="all">
             <key>
                 <column name="USERID" />
             </key>

@@ -79,8 +79,13 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 		String teacherId = httpServletRequest.getParameter("teacherId");
 		
 		Teacher findTeacher = userService.findTeacherByTeacherId(new Integer(teacherId));
-		User findUser = userService.findUserById(findTeacher.getUser().getUserId());
+		Integer userId = findTeacher.getUser().getUserId();
+		User findUser = userService.findUserById(userId);
+//		userService.deleteTeacher(findTeacher);
 		userService.deleteUser(findUser);
+		List<Teacher> teachers = userService.findAllTeachers();
+		request.put("teachers", teachers);
+		
 		return "deleteTeacherSuccess";
 	}
 	

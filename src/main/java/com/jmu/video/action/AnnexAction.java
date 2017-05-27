@@ -296,7 +296,7 @@ public class AnnexAction extends ActionSupport implements ModelDriven<Test> {
 	 */
 	private void uploadFile() throws Exception{
 		String path = ServletActionContext.getServletContext().getRealPath("/annex"); //相对路径
-		String absolutePath = "E:\\workspace\\video\\src\\main\\webapp\\annex";
+		String absolutePath = "E:\\GitHub\\video\\video\\src\\main\\webapp\\annex";
 //		FileOutputStream fos  = new FileOutputStream(path + "\\" + uploadFileName);
 		
 		FileOutputStream fos  = new FileOutputStream(absolutePath + "\\" + uploadFileName);

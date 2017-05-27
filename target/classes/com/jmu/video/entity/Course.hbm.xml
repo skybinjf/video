@@ -32,7 +32,7 @@
   <property generated="never" lazy="false" name="clickNum" type="java.lang.Integer">
    <column name="CLICKNUM"/>
   </property>
-  <many-to-one class="com.jmu.video.entity.Teacher" name="teacher">
+  <many-to-one class="com.jmu.video.entity.Teacher" name="teacher" cascade="all">
    <column name="TEACHERID"/>
   </many-to-one>
  </class>

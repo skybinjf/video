@@ -1,0 +1,472 @@
+﻿--------------------------------------------
+-- Export file for user BINJF             --
+-- Created by Home on 2017/5/27, 23:14:32 --
+--------------------------------------------
+
+spool video表结构.log
+
+prompt
+prompt Creating table T_USER
+prompt =====================
+prompt
+create table BINJF.T_USER
+(
+  USERID   NUMBER(10) not null,
+  USERNAME VARCHAR2(255 CHAR),
+  PASSWORD VARCHAR2(255 CHAR),
+  SEX      VARCHAR2(255 CHAR),
+  EMAIL    VARCHAR2(255 CHAR),
+  ADDRESS  VARCHAR2(255 CHAR),
+  PHONE    VARCHAR2(255 CHAR),
+  VOCATION VARCHAR2(255 CHAR),
+  STATUS   VARCHAR2(255 CHAR),
+  INTRO    VARCHAR2(255 CHAR),
+  SCHOOL   VARCHAR2(255 CHAR),
+  IMG      VARCHAR2(255 CHAR)
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+alter table BINJF.T_USER
+  add primary key (USERID)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+
+prompt
+prompt Creating table T_ADMIN
+prompt ======================
+prompt
+create table BINJF.T_ADMIN
+(
+  ADMINID NUMBER(10) not null,
+  USERID  NUMBER(10)
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+alter table BINJF.T_ADMIN
+  add primary key (ADMINID)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+alter table BINJF.T_ADMIN
+  add constraint FK_JW5QVC1119NK1YMLVN40V9OLP foreign key (USERID)
+  references BINJF.T_USER (USERID) on delete cascade;
+
+prompt
+prompt Creating table T_TEACHER
+prompt ========================
+prompt
+create table BINJF.T_TEACHER
+(
+  TEACHERID NUMBER(10) not null,
+  UNIT      VARCHAR2(255 CHAR),
+  USERID    NUMBER(10)
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+alter table BINJF.T_TEACHER
+  add primary key (TEACHERID)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+alter table BINJF.T_TEACHER
+  add constraint FK_Q93FLHHM6E18RV3IWBHIOK47M foreign key (USERID)
+  references BINJF.T_USER (USERID) on delete cascade;
+
+prompt
+prompt Creating table T_COURSE
+prompt =======================
+prompt
+create table BINJF.T_COURSE
+(
+  COURSEID   NUMBER(10) not null,
+  COURSENAME VARCHAR2(255 CHAR),
+  INTRO      VARCHAR2(255 CHAR),
+  PERIOD     VARCHAR2(255 CHAR),
+  STATUS     VARCHAR2(255 CHAR),
+  CLASSIFY   VARCHAR2(255 CHAR),
+  UPLOADDATE TIMESTAMP(6),
+  REMARK     VARCHAR2(255 CHAR),
+  TEACHERID  NUMBER(10),
+  CLICKNUM   NUMBER(10)
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+alter table BINJF.T_COURSE
+  add primary key (COURSEID)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+alter table BINJF.T_COURSE
+  add constraint FK_HDSM3C8JMEIXNVDRVDOULN3B0 foreign key (TEACHERID)
+  references BINJF.T_TEACHER (TEACHERID) on delete cascade;
+
+prompt
+prompt Creating table T_ANNEX
+prompt ======================
+prompt
+create table BINJF.T_ANNEX
+(
+  ANNEX             NUMBER(10) not null,
+  PATH              VARCHAR2(255 CHAR),
+  UPLOADCONTENTTYPE VARCHAR2(255 CHAR),
+  UPLOADFILENAME    VARCHAR2(255 CHAR),
+  COURSEID          NUMBER(10)
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+alter table BINJF.T_ANNEX
+  add primary key (ANNEX)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+alter table BINJF.T_ANNEX
+  add constraint FK_IJ9TD2TRLIDD8GQMXV52M6GQU foreign key (COURSEID)
+  references BINJF.T_COURSE (COURSEID) on delete cascade;
+
+prompt
+prompt Creating table T_CHAPTER
+prompt ========================
+prompt
+create table BINJF.T_CHAPTER
+(
+  CHAPTERID   NUMBER(10) not null,
+  CHAPTERNAME VARCHAR2(255 CHAR),
+  COURSEID    NUMBER(10)
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+alter table BINJF.T_CHAPTER
+  add primary key (CHAPTERID)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+alter table BINJF.T_CHAPTER
+  add constraint FK_7N55N49OXECT3PCTRHX6VJE1U foreign key (COURSEID)
+  references BINJF.T_COURSE (COURSEID) on delete cascade;
+
+prompt
+prompt Creating table T_COMMENT
+prompt ========================
+prompt
+create table BINJF.T_COMMENT
+(
+  COMMENTID   NUMBER(10) not null,
+  CONTENT     VARCHAR2(255 CHAR),
+  MARK        NUMBER(10),
+  USERID      NUMBER(10),
+  COURSEID    NUMBER(10),
+  COMMENTDATE DATE
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+alter table BINJF.T_COMMENT
+  add primary key (COMMENTID)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+alter table BINJF.T_COMMENT
+  add constraint FK_PWL891WJQNOCA7YU4TQEDG879 foreign key (COURSEID)
+  references BINJF.T_COURSE (COURSEID) on delete cascade;
+alter table BINJF.T_COMMENT
+  add constraint FK_QDNHXFMJ5K9IHV3YS8MDU4O0X foreign key (USERID)
+  references BINJF.T_USER (USERID) on delete cascade;
+
+prompt
+prompt Creating table T_MESSAGE
+prompt ========================
+prompt
+create table BINJF.T_MESSAGE
+(
+  MESSAGEID   NUMBER(10) not null,
+  CONTENT     VARCHAR2(255 CHAR),
+  MESSAGEDATE TIMESTAMP(6),
+  STATUS      VARCHAR2(255 CHAR),
+  FROMWHO     VARCHAR2(255 CHAR),
+  TOWHO       VARCHAR2(255 CHAR),
+  FLAG        VARCHAR2(255 CHAR)
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+alter table BINJF.T_MESSAGE
+  add primary key (MESSAGEID)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+
+prompt
+prompt Creating table T_SUBMESSAGE
+prompt ===========================
+prompt
+create table BINJF.T_SUBMESSAGE
+(
+  SUBMESSAGEID NUMBER(10) not null,
+  CONTENT      VARCHAR2(255 CHAR),
+  MESSAGEDATE  TIMESTAMP(6),
+  STATUS       VARCHAR2(255 CHAR),
+  FROMWHO      VARCHAR2(255 CHAR),
+  TOWHO        VARCHAR2(255 CHAR),
+  MESSAGEID    NUMBER(10)
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+alter table BINJF.T_SUBMESSAGE
+  add primary key (SUBMESSAGEID)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+alter table BINJF.T_SUBMESSAGE
+  add constraint FK_ER5F3BSEV79IL9JDKPTAW3W6F foreign key (MESSAGEID)
+  references BINJF.T_MESSAGE (MESSAGEID) on delete cascade;
+
+prompt
+prompt Creating table T_TEST
+prompt =====================
+prompt
+create table BINJF.T_TEST
+(
+  TESTID   NUMBER(10) not null,
+  TESTNAME VARCHAR2(255 CHAR),
+  ITEMA    VARCHAR2(255 CHAR),
+  ITEMB    VARCHAR2(255 CHAR),
+  ITEMC    VARCHAR2(255 CHAR),
+  ITEMD    VARCHAR2(255 CHAR),
+  ANSWER   VARCHAR2(255 CHAR),
+  DETAIL   VARCHAR2(255 CHAR),
+  COURSEID NUMBER(10)
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+alter table BINJF.T_TEST
+  add primary key (TESTID)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+alter table BINJF.T_TEST
+  add constraint FK_6606RBP0RWCCBSCWXMEHTB97V foreign key (COURSEID)
+  references BINJF.T_COURSE (COURSEID) on delete cascade;
+
+prompt
+prompt Creating table T_VIDEO
+prompt ======================
+prompt
+create table BINJF.T_VIDEO
+(
+  VIDEOID           NUMBER(10) not null,
+  TITLE             VARCHAR2(255 CHAR),
+  PATH              VARCHAR2(255 CHAR),
+  UPLOADCONTENTTYPE VARCHAR2(255 CHAR),
+  UPLOADFILENAME    VARCHAR2(255 CHAR),
+  CHAPTERID         NUMBER(10)
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+alter table BINJF.T_VIDEO
+  add primary key (VIDEOID)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+alter table BINJF.T_VIDEO
+  add constraint FK_PD2OYSEEXF6MJ5PRWN87MAN76 foreign key (CHAPTERID)
+  references BINJF.T_CHAPTER (CHAPTERID) on delete cascade;
+
+
+spool off

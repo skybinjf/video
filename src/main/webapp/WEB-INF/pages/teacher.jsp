@@ -92,14 +92,14 @@
 					<span>职业：</span>
 					<s:property value="#session.user.vocation" />
 				</p>
-				<p>
+				<%-- <p>
 					<span>状态：</span>
 					<s:property value="#session.user.status" />
 				</p>
 				<p>
 					<span>单位：</span>
 					<s:property value="#session.teacher.unit" />
-				</p>
+				</p> --%>
 				<p>
 					<span>简介：</span>
 					<s:property value="#session.user.intro" />

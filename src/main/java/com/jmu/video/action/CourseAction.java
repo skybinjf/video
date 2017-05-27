@@ -113,6 +113,7 @@ public class CourseAction extends ActionSupport implements ModelDriven<Course> {
 			System.out.println("已存在该课程！");
 			return "addCourse";
 		}else {
+			course.setClickNum(0);
 			int CourseId = courseService.addCourse(course, teacher);
 		}
 		return "addCourseSuccess";
@@ -340,7 +341,7 @@ public class CourseAction extends ActionSupport implements ModelDriven<Course> {
 	private void uploadVideo(){
 		try {
 			String path = ServletActionContext.getServletContext().getRealPath("/video"); //相对路径
-			String absolutePath = "E:\\workspace\\video\\src\\main\\webapp\\video";
+			String absolutePath = "E:\\GitHub\\video\\video\\src\\main\\webapp\\video";
 //			FileOutputStream fos  = new FileOutputStream(path + "\\" + uploadFileName);
 			FileOutputStream fos  = new FileOutputStream(absolutePath + "\\" + uploadFileName);
 			FileInputStream fis = new FileInputStream(getUpload());

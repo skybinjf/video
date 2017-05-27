@@ -11,7 +11,7 @@
         <property name="unit" type="java.lang.String">
             <column name="UNIT" />
         </property>
-        <many-to-one name="user" class="com.jmu.video.entity.User" lazy="false">
+        <many-to-one name="user" class="com.jmu.video.entity.User" lazy="false" cascade="all">
             <column name="USERID" />
         </many-to-one>
     </class>

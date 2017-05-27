@@ -83,9 +83,9 @@
 				<div>
 					<p>简介：<s:property value="#request.teacher.user.intro"/></p>
 				</div>
-				<div>
+				<%-- <div>
 					<p>单位：<s:property value="#request.teacher.unit"/></p>
-				</div>
+				</div> --%>
 				<form action="annex_sendMessageToTeacher" method="post">
 				
 					<!-- 隐藏域，传用户和教师的信息到后台 -->
@@ -122,6 +122,7 @@
 				</div>
 			</s:iterator>
 		</div>
+		<br><br><br><br><br><br>
 	</div>
 </body>
 </html>

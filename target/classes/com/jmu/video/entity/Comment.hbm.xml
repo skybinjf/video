@@ -17,10 +17,10 @@
         <property name="commentDate" type="java.util.Date">
             <column name="commentDate" />
         </property>
-        <many-to-one name="user" class="com.jmu.video.entity.User" lazy="false">
+        <many-to-one name="user" class="com.jmu.video.entity.User" lazy="false" cascade="all">
             <column name="USERID" />
         </many-to-one>
-        <many-to-one name="course" class="com.jmu.video.entity.Course" lazy="false">
+        <many-to-one name="course" class="com.jmu.video.entity.Course" lazy="false" cascade="all">
             <column name="COURSEID" />
         </many-to-one>
     </class>

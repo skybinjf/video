@@ -20,7 +20,7 @@
         <property name="uploadFileName" type="java.lang.String">
             <column name="UPLOADFILENAME" />
         </property>
-        <many-to-one name="chapter" class="com.jmu.video.entity.Chapter" lazy="false">
+        <many-to-one name="chapter" class="com.jmu.video.entity.Chapter" lazy="false" cascade="all">
             <column name="CHAPTERID" />
         </many-to-one>
     </class>

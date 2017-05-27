@@ -57,13 +57,16 @@
 			<!-- 下左，章节和视频 -->
 			<div class="offset3 span7">
 				<ul class="nav nav-tabs">
-				  <li class="">
+				  <li>
 				    <a href="course_courseScan?courseId=${request.course.courseId }">章节</a>
 				  </li>
 				  <li><a href="comment_courseComment?courseId=${request.course.courseId }">评论</a></li>
 				  <!-- <li><a href="#">打分</a></li> -->
 				  <li class="active"><a href="annex_downloadPage?courseId=${request.course.courseId }">下载资料</a></li>
-				  <li><a href="annex_testPage?courseId=${request.course.courseId }">测试</a></li>
+				  <li><a href="annex_testPage?courseId=${request.course.courseId }">练习题</a></li>
+				  <%-- 
+				  <li><a href="annex_gradePage?courseId=${request.course.courseId }">课程评分</a></li>
+				   --%>
 				</ul>
 				<!-- 下载资料 -->
 				<div>

@@ -64,7 +64,10 @@
 				  <li class="active"><a href="comment_courseComment?courseId=${request.course.courseId }">评论</a></li>
 				  <!-- <li><a href="#">打分</a></li> -->
 				  <li><a href="annex_downloadPage?courseId=${request.course.courseId }">下载资料</a></li>
-				  <li><a href="annex_testPage?courseId=${request.course.courseId }">测试</a></li>
+				  <li><a href="annex_testPage?courseId=${request.course.courseId }">练习题</a></li>
+				  <%-- 
+				  <li><a href="annex_gradePage?courseId=${request.course.courseId }">课程评分</a></li>
+				   --%>
 				</ul>
 				<!-- 用户评论 -->
 				<div>

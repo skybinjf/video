@@ -54,8 +54,9 @@
 				</div>
 				<div class="offset6 span3">
 					<button class="btn btn-info">提交</button>
+					<!-- <input type="submit" class="btn btn-info" value="提交"> -->
 				</div>
-				<%-- <div><s:fielderror></s:fielderror> </div> --%>
+				<div><s:fielderror></s:fielderror> </div>
 			</form>
 			<div class="offset4 span6">
 				<span class="text-warning lead">${tip }</span>

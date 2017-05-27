@@ -57,6 +57,7 @@
 		<action name="registerAction" class="registerAction" method="execute">
 			<result name="success" type="chain">index_index</result>
 			<result name="input">/WEB-INF/pages/register.jsp</result>
+			<result name="fail">/WEB-INF/pages/fail.jsp</result>
 		</action>
 		
 		<action name="comment_*" class="commentAction" method="{1}">
@@ -66,6 +67,7 @@
 		</action>
 		
 		<action name="user_*" class="userAction" method="{1}">
+			<result name="fail">/WEB-INF/pages/fail.jsp</result>
 			<result name="student">/WEB-INF/pages/student.jsp</result>
 			<result name="teacher">/WEB-INF/pages/teacher.jsp</result>
 			<result name="admin">/WEB-INF/pages/admin.jsp</result>
@@ -105,7 +107,7 @@
 			<result name="updateChapterSuccess" type="chain">course_scanMyCourse</result>
 			<result name="editVideoSuccess">/WEB-INF/pages/videoEdit.jsp</result>
 			<result name="updateVideoSuccess" type="chain">course_scanMyCourse</result>
-			<result name="deleteSuccess" type="chain">course_scanMyCourse</result>
+			<result name="deleteSuccess" type="chain">course_findAllCourses</result>
 			<result name="findCourseSuccess">/WEB-INF/pages/adminCourse.jsp</result>
 			<result name="checkCourseSuccess">/WEB-INF/pages/adminCourse.jsp</result>
 			<result name="courseScanSuccess">/WEB-INF/pages/courseScan.jsp</result>
